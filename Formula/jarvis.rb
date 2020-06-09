@@ -7,16 +7,16 @@ class Jarvis < Formula
 
   if OS.mac?
     url "https://github.com/tranvictor/jarvis/releases/download/v0.0.12/jarvis_0.0.12_macOS_amd64.tar.gz"
-    sha256 "cacf463d73eaecebcdf92bdcbc661fcd953536b99f24a62daa962d54bec04221"
+    sha256 "9b52b82ae2355f0402a904ea538c25d3b5416a7998d281d375385cd2e36a63e8"
   elsif OS.linux?
     if Hardware::CPU.intel?
       url "https://github.com/tranvictor/jarvis/releases/download/v0.0.12/jarvis_0.0.12_linux_amd64.tar.gz"
-      sha256 "8d05ac6e52dfbf7896fc00d29f577f350619367bbee950e4840e7b27f486d88c"
+      sha256 "fceee78aef3dec383da7974f1e863277cb392b2a822257d9ab08f0c08e953b59"
     end
     if Hardware::CPU.arm?
       if Hardware::CPU.is_64_bit?
         url "https://github.com/tranvictor/jarvis/releases/download/v0.0.12/jarvis_0.0.12_linux_arm64.tar.gz"
-        sha256 "4ad0d44efa9c397a789492736eb164fadaa903f3f02cbfebe496375bf4336382"
+        sha256 "1eec781c9fe7c2e47de53c199207f8eac6be3fd4c8c6a9b2797fd15cc8a87874"
       else
       end
     end
@@ -29,7 +29,7 @@ class Jarvis < Formula
 
   def install
     system "make", "jarvis" if build.head?
-    bin.install "jarvis"
+    bin.install "bin/jarvis"
   end
 
   test do
