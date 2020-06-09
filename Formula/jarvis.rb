@@ -7,16 +7,16 @@ class Jarvis < Formula
 
   if OS.mac?
     url "https://github.com/tranvictor/jarvis/releases/download/v0.0.12/jarvis_0.0.12_macOS_amd64.tar.gz"
-    sha256 "e90d18bdf32163e0a6432b5c0ad97ee36fac95c6b313a32aea369c6f3782576a"
+    sha256 "623dcf80cfd020d2ff9a3deb95fce901b9b84d71b1314d2198a4db5624d1e4d4"
   elsif OS.linux?
     if Hardware::CPU.intel?
       url "https://github.com/tranvictor/jarvis/releases/download/v0.0.12/jarvis_0.0.12_linux_amd64.tar.gz"
-      sha256 "3e8e5995e8640d9613a51fec29fb0cb016a1b7316b7eb49c84ec3fda702459b3"
+      sha256 "fb7affee5677f83297a9819afaf901a786bfee54ab4c9477d1205b72d4216fef"
     end
     if Hardware::CPU.arm?
       if Hardware::CPU.is_64_bit?
         url "https://github.com/tranvictor/jarvis/releases/download/v0.0.12/jarvis_0.0.12_linux_arm64.tar.gz"
-        sha256 "d08cc28fe6a6f4e5301e6358af33d43374ece4d15138d48610b30cba11ec87ca"
+        sha256 "143b6cd9cdb86bed7170f3910e64bea068c26ba97cd492efb82acfaa15b2c54d"
       else
       end
     end
