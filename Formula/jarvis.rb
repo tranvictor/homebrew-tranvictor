@@ -2,21 +2,21 @@
 class Jarvis < Formula
   desc "Onchain (EVM compatible) operation made easy"
   homepage "https://github.com/tranvictor/jarvis"
-  version "0.0.20"
+  version "0.0.21"
   bottle :unneeded
 
   if OS.mac?
-    url "https://github.com/tranvictor/jarvis/releases/download/v0.0.20/jarvis_0.0.20_macOS_amd64.tar.gz"
-    sha256 "8af2d2be81c489848dc642d5dde09abea27fba7aa3cbeff9357c7143144fb7db"
+    url "https://github.com/tranvictor/jarvis/releases/download/v0.0.21/jarvis_0.0.21_macOS_amd64.tar.gz"
+    sha256 "44c97bbaeb1635086ec9e20bf2212195cfa7c0bbb3ebfa15d6ce02baacb2f82c"
   elsif OS.linux?
     if Hardware::CPU.intel?
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.20/jarvis_0.0.20_linux_amd64.tar.gz"
-      sha256 "9b99e7bb3aa734dde342335e4616e720985f31e9cb3913d150eadcf9ed87260c"
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.21/jarvis_0.0.21_linux_amd64.tar.gz"
+      sha256 "b2e87a7b43da972da6ae712e53a183b90a99bf4a29ec32c8470897f72d8aeadd"
     end
     if Hardware::CPU.arm?
       if Hardware::CPU.is_64_bit?
-        url "https://github.com/tranvictor/jarvis/releases/download/v0.0.20/jarvis_0.0.20_linux_arm64.tar.gz"
-        sha256 "5e05b0a4b0340b899cf778f13a2ed783d1e36bcd71e5d45e1e943db248b77b21"
+        url "https://github.com/tranvictor/jarvis/releases/download/v0.0.21/jarvis_0.0.21_linux_arm64.tar.gz"
+        sha256 "52c62b90e136ef9f31cb9015cd9923e4d756a2165035e56e9055dfb7fed5be49"
       else
       end
     end
