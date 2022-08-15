@@ -5,11 +5,11 @@
 class Jarvis < Formula
   desc "Onchain (EVM compatible) operation made easy"
   homepage "https://github.com/tranvictor/jarvis"
-  version "0.0.23"
+  version "0.0.24"
 
   on_macos do
-    url "https://github.com/tranvictor/jarvis/releases/download/v0.0.23/jarvis_0.0.23_macOS_amd64.tar.gz"
-    sha256 "f998d223a15b6ae16ce0557c1ac6d9b6198cf99b870d7a083380c3c66d018840"
+    url "https://github.com/tranvictor/jarvis/releases/download/v0.0.24/jarvis_0.0.24_macOS_amd64.tar.gz"
+    sha256 "ef12c8f98c9d24b34b9cc0590513cbfcc4f251471715d7c0629a1fba8f5c0f06"
 
     def install
       system "make", "jarvis" if build.head?
@@ -29,8 +29,8 @@ class Jarvis < Formula
 
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.23/jarvis_0.0.23_linux_arm64.tar.gz"
-      sha256 "ffd6fa9920adaf807fe425c85d202548e5e7ff48906b36e96d6f83796442f39f"
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.24/jarvis_0.0.24_linux_arm64.tar.gz"
+      sha256 "d604a75dbe0c56ee309ac0558c9751ede07a652254af0ad3ffb6f95fd6864c41"
 
       def install
         system "make", "jarvis" if build.head?
@@ -38,8 +38,8 @@ class Jarvis < Formula
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.23/jarvis_0.0.23_linux_amd64.tar.gz"
-      sha256 "f6d4cddc7cb5cc33382ea9f37ddc97c3abf7de40a1751ff3209a602bc06b2018"
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.24/jarvis_0.0.24_linux_amd64.tar.gz"
+      sha256 "cfa0c0d66a70ebbe862733b347e0a47ddfaec4c2c8fd1e6dc218512477a7ceef"
 
       def install
         system "make", "jarvis" if build.head?
