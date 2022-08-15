@@ -8,21 +8,22 @@ class Jarvis < Formula
   version "0.0.24"
 
   on_macos do
-    url "https://github.com/tranvictor/jarvis/releases/download/v0.0.24/jarvis_0.0.24_macOS_amd64.tar.gz"
-    sha256 "ef12c8f98c9d24b34b9cc0590513cbfcc4f251471715d7c0629a1fba8f5c0f06"
-
-    def install
-      system "make", "jarvis" if build.head?
-      bin.install "bin/jarvis"
-    end
-
     if Hardware::CPU.arm?
-      def caveats
-        <<~EOS
-          The darwin_arm64 architecture is not supported for the Jarvis
-          formula at this time. The darwin_amd64 binary may work in compatibility
-          mode, but it might not be fully supported.
-        EOS
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.24/jarvis_0.0.24_macOS_arm64.tar.gz"
+      sha256 "00092d778e330de05ec9058c64cf27b583ae135a877170ea91052574be3b02a4"
+
+      def install
+        system "make", "jarvis" if build.head?
+        bin.install "bin/jarvis"
+      end
+    end
+    if Hardware::CPU.intel?
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.24/jarvis_0.0.24_macOS_amd64.tar.gz"
+      sha256 "9fabb6c4f55dd60cfb3bd3e0d64355c736fdfbe84d4489d19fb536fd90cc54a1"
+
+      def install
+        system "make", "jarvis" if build.head?
+        bin.install "bin/jarvis"
       end
     end
   end
@@ -30,7 +31,7 @@ class Jarvis < Formula
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://github.com/tranvictor/jarvis/releases/download/v0.0.24/jarvis_0.0.24_linux_arm64.tar.gz"
-      sha256 "d604a75dbe0c56ee309ac0558c9751ede07a652254af0ad3ffb6f95fd6864c41"
+      sha256 "17fa0ed18a56308afa07f766e39227118a2b870b9bd4aeda323d8ba37a7bff6b"
 
       def install
         system "make", "jarvis" if build.head?
@@ -39,7 +40,7 @@ class Jarvis < Formula
     end
     if Hardware::CPU.intel?
       url "https://github.com/tranvictor/jarvis/releases/download/v0.0.24/jarvis_0.0.24_linux_amd64.tar.gz"
-      sha256 "cfa0c0d66a70ebbe862733b347e0a47ddfaec4c2c8fd1e6dc218512477a7ceef"
+      sha256 "bfb8584fe43918601bc9ebc542a4acc7f1e12c346707011b8b9b91c9ea066351"
 
       def install
         system "make", "jarvis" if build.head?
