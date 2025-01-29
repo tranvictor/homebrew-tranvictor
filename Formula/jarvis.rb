@@ -5,21 +5,12 @@
 class Jarvis < Formula
   desc "Onchain (EVM compatible) operation made easy"
   homepage "https://github.com/tranvictor/jarvis"
-  version "0.0.32"
+  version "0.0.33"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.32/jarvis_0.0.32_macOS_arm64.tar.gz"
-      sha256 "1c56b59bea3ba66d455081d55dc6909fed858b49edc55573d9f049e9e3a12de4"
-
-      def install
-        system "make", "jarvis" if build.head?
-        bin.install "bin/jarvis"
-      end
-    end
     if Hardware::CPU.intel?
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.32/jarvis_0.0.32_macOS_amd64.tar.gz"
-      sha256 "e4f2597fb1368d12b5d6e84c17831dd711638b12cd017c5a626c52d4571c7b44"
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.33/jarvis_0.0.33_macOS_amd64.tar.gz"
+      sha256 "95c4c12d826cc6965c38883c2f0adc1ded9ece3acc8c5b0b023c0ab5e12a1fe4"
 
       def install
         system "make", "jarvis" if build.head?
@@ -30,8 +21,8 @@ class Jarvis < Formula
 
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.32/jarvis_0.0.32_linux_arm64.tar.gz"
-      sha256 "8784303f4c6f19e4b1969839455cdb7d4893fe274a1ceb61f22b975452e0f570"
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.33/jarvis_0.0.33_linux_arm64.tar.gz"
+      sha256 "fc3911b65f50f586ec302c7817324fbe27e0770c7d0c510fd5374b7814b99d3d"
 
       def install
         system "make", "jarvis" if build.head?
@@ -39,8 +30,8 @@ class Jarvis < Formula
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.32/jarvis_0.0.32_linux_amd64.tar.gz"
-      sha256 "0a9903fbb54dd184556d3eea34869aced9d36de18b474c3beb67afe5b55d45aa"
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.33/jarvis_0.0.33_linux_amd64.tar.gz"
+      sha256 "d3a8064b6110f02eed76d80260c836ce9705233fc47536dc5dd3feaf6e894d96"
 
       def install
         system "make", "jarvis" if build.head?
