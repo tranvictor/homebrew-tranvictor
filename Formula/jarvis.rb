@@ -5,12 +5,12 @@
 class Jarvis < Formula
   desc "Onchain (EVM compatible) operation made easy"
   homepage "https://github.com/tranvictor/jarvis"
-  version "0.0.36"
+  version "0.1.0"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.36/jarvis_0.0.36_macOS_arm64.tar.gz"
-      sha256 "fdeb163417459770776847c16953a0535b5d2525be126b4549bf9987722ae67f"
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.1.0/jarvis_0.1.0_macOS_arm64.tar.gz"
+      sha256 "5c94b76fb81671a395e9b49c59fd5d32256fa8b946d190b2a1457808994a7ae9"
 
       def install
         system "make", "jarvis" if build.head?
@@ -18,8 +18,8 @@ class Jarvis < Formula
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.36/jarvis_0.0.36_macOS_amd64.tar.gz"
-      sha256 "d32f1384f08985c4427074abade17bae5df647bad427ca8eb936d3e8b8570207"
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.1.0/jarvis_0.1.0_macOS_amd64.tar.gz"
+      sha256 "b9fe8741be94a4753f6db64129abe71121d89c68f971987a7efaa2ab4666e05a"
 
       def install
         system "make", "jarvis" if build.head?
@@ -30,8 +30,8 @@ class Jarvis < Formula
 
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.36/jarvis_0.0.36_linux_arm64.tar.gz"
-      sha256 "6345e454930d76f216436bbd45bbe33e7e407064736da5bf9662d0d4c7ae7a37"
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.1.0/jarvis_0.1.0_linux_arm64.tar.gz"
+      sha256 "34bc842820cbdc23e1f3e58ef2504d6a19726726dadfbcd0f63c1c2b6ec46e3f"
 
       def install
         system "make", "jarvis" if build.head?
@@ -39,8 +39,8 @@ class Jarvis < Formula
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.0.36/jarvis_0.0.36_linux_amd64.tar.gz"
-      sha256 "ea2875b539b4988f8d0daa63e6d5aa6dde8fc0078da87b93cd0eee65450dce8c"
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.1.0/jarvis_0.1.0_linux_amd64.tar.gz"
+      sha256 "286a2ec0d4cc531cc14fcafff2b7a60525cc601bef8cb3291dacc458eb7f44d7"
 
       def install
         system "make", "jarvis" if build.head?
