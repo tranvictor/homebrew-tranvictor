@@ -10,7 +10,7 @@ class Jarvis < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/tranvictor/jarvis/releases/download/v0.1.0/jarvis_0.1.0_macOS_arm64.tar.gz"
-      sha256 "5c94b76fb81671a395e9b49c59fd5d32256fa8b946d190b2a1457808994a7ae9"
+      sha256 "480f697fc7c57d4d1cdd8888a70f2d10474f72726cb33b89e3977be57e5f35be"
 
       def install
         system "make", "jarvis" if build.head?
@@ -19,7 +19,7 @@ class Jarvis < Formula
     end
     if Hardware::CPU.intel?
       url "https://github.com/tranvictor/jarvis/releases/download/v0.1.0/jarvis_0.1.0_macOS_amd64.tar.gz"
-      sha256 "b9fe8741be94a4753f6db64129abe71121d89c68f971987a7efaa2ab4666e05a"
+      sha256 "6631467c60822c47b88dced7540c7b4c0ea5eca0969da24779bb4cc5f30885cf"
 
       def install
         system "make", "jarvis" if build.head?
@@ -31,7 +31,7 @@ class Jarvis < Formula
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://github.com/tranvictor/jarvis/releases/download/v0.1.0/jarvis_0.1.0_linux_arm64.tar.gz"
-      sha256 "34bc842820cbdc23e1f3e58ef2504d6a19726726dadfbcd0f63c1c2b6ec46e3f"
+      sha256 "9172860aee6ac5be953f435381f4f774275e81734a8c07ade0aec3a54657b664"
 
       def install
         system "make", "jarvis" if build.head?
@@ -40,7 +40,7 @@ class Jarvis < Formula
     end
     if Hardware::CPU.intel?
       url "https://github.com/tranvictor/jarvis/releases/download/v0.1.0/jarvis_0.1.0_linux_amd64.tar.gz"
-      sha256 "286a2ec0d4cc531cc14fcafff2b7a60525cc601bef8cb3291dacc458eb7f44d7"
+      sha256 "d2909b3a825ef0eb9255fd5a2de5096698f4a4b95753f1af802d74da1971d77a"
 
       def install
         system "make", "jarvis" if build.head?
