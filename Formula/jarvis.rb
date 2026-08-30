@@ -5,21 +5,21 @@
 class Jarvis < Formula
   desc "Onchain (EVM compatible) operation made easy"
   homepage "https://github.com/tranvictor/jarvis"
-  version "0.2.0"
+  version "0.2.1"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.2.0/jarvis_0.2.0_macOS_arm64.tar.gz"
-      sha256 "733d797dfee1f391607415875cd6d7912afb4bf44f0d8ba52eff5cdc1711225c"
+    on_intel do
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.2.1/jarvis_0.2.1_macOS_amd64.tar.gz"
+      sha256 "b1cd07424c58c368250ea0f0348fc494c6226f89085fb0a534fef36dbbade80e"
 
       def install
         system "make", "jarvis" if build.head?
         bin.install "bin/jarvis"
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.2.0/jarvis_0.2.0_macOS_amd64.tar.gz"
-      sha256 "b7332351aba1964878b239eba3a7fb481eb7933e00bf9bacc43f260c8b95a851"
+    on_arm do
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.2.1/jarvis_0.2.1_macOS_arm64.tar.gz"
+      sha256 "13d21db869cbb0ea5d05505029e2b56f431d0253c2cd79138fd6c39132635bcf"
 
       def install
         system "make", "jarvis" if build.head?
@@ -29,22 +29,26 @@ class Jarvis < Formula
   end
 
   on_linux do
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.2.0/jarvis_0.2.0_linux_arm64.tar.gz"
-      sha256 "d0646130b28c74aea6d773b034f61b9191eb2ea13d6a51ad046385e52704beea"
+    on_intel do
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/tranvictor/jarvis/releases/download/v0.2.1/jarvis_0.2.1_linux_amd64.tar.gz"
+        sha256 "8c922773cfaf779c3a74a1ce2edab1a2d72f1d36189aa20eb96c0e08c9cf6cf4"
 
-      def install
-        system "make", "jarvis" if build.head?
-        bin.install "bin/jarvis"
+        def install
+          system "make", "jarvis" if build.head?
+          bin.install "bin/jarvis"
+        end
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.2.0/jarvis_0.2.0_linux_amd64.tar.gz"
-      sha256 "40549d048584013765522f9dec7e6109ec595a5cc01f34dea1594cdc53a6a314"
+    on_arm do
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/tranvictor/jarvis/releases/download/v0.2.1/jarvis_0.2.1_linux_arm64.tar.gz"
+        sha256 "b0d17929e8772649862905fb86ec50219cf3e638bee960fc56ff743ea9a84140"
 
-      def install
-        system "make", "jarvis" if build.head?
-        bin.install "bin/jarvis"
+        def install
+          system "make", "jarvis" if build.head?
+          bin.install "bin/jarvis"
+        end
       end
     end
   end
@@ -52,6 +56,14 @@ class Jarvis < Formula
   head do
     url "https://github.com/tranvictor/jarvis.git"
     depends_on "go"
+  end
+
+  def caveats
+    <<~EOS
+      After a new GitHub release, refresh the tap before upgrading:
+        brew update
+        brew upgrade tranvictor/jarvis/jarvis
+    EOS
   end
 
   test do
