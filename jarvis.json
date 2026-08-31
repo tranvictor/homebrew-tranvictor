@@ -1,0 +1,15 @@
+{
+    "version": "0.2.2",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/tranvictor/jarvis/releases/download/v0.2.2/jarvis_0.2.2_windows_amd64.zip",
+            "bin": [
+                "bin/jarvis.exe"
+            ],
+            "hash": "c8d31f21fb39978b15add8b31b0e9ab8b142c0eb6e5fb358abe324a5868fb9a0"
+        }
+    },
+    "homepage": "https://github.com/tranvictor/jarvis",
+    "license": "MIT",
+    "description": "Onchain (EVM compatible) operation made easy"
+}
