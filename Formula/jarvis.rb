@@ -5,12 +5,12 @@
 class Jarvis < Formula
   desc "Onchain (EVM compatible) operation made easy"
   homepage "https://github.com/tranvictor/jarvis"
-  version "0.2.2"
+  version "0.3.0"
 
   on_macos do
     on_intel do
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.2.2/jarvis_0.2.2_macOS_amd64.tar.gz"
-      sha256 "9111d8e3956b190fae547518853b6bacfaecdc2ab0065ebd774b0c2eb803e361"
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.3.0/jarvis_0.3.0_macOS_amd64.tar.gz"
+      sha256 "192c74e53f8221e103477b93ac3ef8d3d645e9efdf6700981fd185274467c6d2"
 
       def install
         system "make", "jarvis" if build.head?
@@ -18,8 +18,8 @@ class Jarvis < Formula
       end
     end
     on_arm do
-      url "https://github.com/tranvictor/jarvis/releases/download/v0.2.2/jarvis_0.2.2_macOS_arm64.tar.gz"
-      sha256 "9c99b3303d6c9b2608063b73a2c4e1e27e6b52eee3ec40373ed95fdc01e8849b"
+      url "https://github.com/tranvictor/jarvis/releases/download/v0.3.0/jarvis_0.3.0_macOS_arm64.tar.gz"
+      sha256 "bf5271730cc23fc0428eca359fb0f0fcab1269ad4eaeecaab7c274360d32a09f"
 
       def install
         system "make", "jarvis" if build.head?
@@ -31,8 +31,8 @@ class Jarvis < Formula
   on_linux do
     on_intel do
       if Hardware::CPU.is_64_bit?
-        url "https://github.com/tranvictor/jarvis/releases/download/v0.2.2/jarvis_0.2.2_linux_amd64.tar.gz"
-        sha256 "f9a15738acd9149586279109816d8138e475a6813c40193f6e64066dd4533ba5"
+        url "https://github.com/tranvictor/jarvis/releases/download/v0.3.0/jarvis_0.3.0_linux_amd64.tar.gz"
+        sha256 "4a07fbb1378913e73860202eb152207925bf7421897ba146e83f0c114a2f72ba"
 
         def install
           system "make", "jarvis" if build.head?
@@ -42,8 +42,8 @@ class Jarvis < Formula
     end
     on_arm do
       if Hardware::CPU.is_64_bit?
-        url "https://github.com/tranvictor/jarvis/releases/download/v0.2.2/jarvis_0.2.2_linux_arm64.tar.gz"
-        sha256 "afb4a170964eccf0e9e6f9b2e1adf0e0dc5d32c12f9e71454c29322e99ec4f7a"
+        url "https://github.com/tranvictor/jarvis/releases/download/v0.3.0/jarvis_0.3.0_linux_arm64.tar.gz"
+        sha256 "9c8af6a93fb8902a643427d89f12e6396a37035ecf3878589c95b09d43e6e1bd"
 
         def install
           system "make", "jarvis" if build.head?
@@ -58,8 +58,41 @@ class Jarvis < Formula
     depends_on "go"
   end
 
+  def post_install
+    # Intel Homebrew already links into /usr/local/bin, which macOS puts on
+    # PATH by default. Apple Silicon (/opt/homebrew) and Linuxbrew do not.
+    brew_bin = HOMEBREW_PREFIX/"bin"
+    return if OS.mac? && brew_bin == Pathname.new("/usr/local/bin")
+
+    line = %(eval "$(#{HOMEBREW_PREFIX}/bin/brew shellenv)")
+    home = Pathname.new(Dir.home)
+    # Write zsh *and* bash files. .zprofile/.zshrc are ignored if the user
+    # is on bash (or vice versa); unused files are harmless.
+    files = [
+      home/".zprofile", home/".zshrc",
+      home/".bash_profile", home/".bashrc",
+    ]
+    files << home/".profile" unless OS.mac?
+
+    files.uniq.each do |file|
+      text = file.exist? ? file.read : ""
+      next if text.include?("brew shellenv") || text.include?(brew_bin.to_s)
+
+      file.open("a") do |io|
+        io.puts
+        io.puts "# Added by the jarvis formula so the jarvis command is on PATH"
+        io.puts line
+      end
+      ohai "Added Homebrew to PATH in #{file}"
+    end
+  end
+
   def caveats
     <<~EOS
+      If the `jarvis` command is not found, open a new terminal window.
+      Or run this once in the current window:
+        eval "$(#{HOMEBREW_PREFIX}/bin/brew shellenv)"
+
       After a new GitHub release, refresh the tap before upgrading:
         brew update
         brew upgrade tranvictor/jarvis/jarvis
